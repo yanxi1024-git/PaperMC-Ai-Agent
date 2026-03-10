@@ -160,6 +160,41 @@ Checks include:
 - Disk space
 - Memory usage
 
+## Version Management
+
+### Balanced Upgrade Strategy
+Adopt a balanced approach with 1-version lag for stability.
+
+### Weekly Upgrade Scoring
+```bash
+python3 scripts/weekly-upgrade-scorer.py
+```
+
+**Scoring System (100 points):**
+- PaperMC Stability (30 points)
+- Plugin Compatibility (40 points)
+- Testing Validation (20 points)
+- Risk Management (10 points)
+
+**Decision Matrix:**
+- **≥ 80 points**: Proceed with upgrade (low risk)
+- **60-79 points**: Further evaluation needed
+- **< 60 points**: Do not upgrade (high risk)
+
+### Automated Scanning
+Weekly automated scans evaluate upgrade readiness:
+1. Check PaperMC API for new versions
+2. Assess plugin compatibility
+3. Calculate risk scores
+4. Generate detailed reports
+
+### Emergency Rollback
+When issues occur:
+1. Stop server immediately
+2. Restore from latest backup
+3. Revert to previous version
+4. Verify and restart
+
 ## Maintenance Workflow
 
 ### Daily

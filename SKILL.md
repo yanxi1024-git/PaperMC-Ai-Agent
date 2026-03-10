@@ -105,6 +105,61 @@ Checks:
 - Disk space
 - Memory usage
 
+## Version Management Strategy
+
+### Balanced Upgrade Strategy
+Adopt a balanced approach with 1-version lag for stability.
+
+### Weekly Upgrade Scoring System
+```bash
+python3 scripts/weekly-upgrade-scorer.py
+```
+
+**Scoring Criteria (100 points total):**
+1. **PaperMC Stability (30 points)**
+   - Official API confirmation
+   - Release age (>2 weeks)
+   - Security patches included
+
+2. **Plugin Compatibility (40 points)**
+   - Core plugins compatibility
+   - All plugins compatible
+   - Recent plugin updates
+   - No critical warnings
+
+3. **Testing & Validation (20 points)**
+   - Test environment validation
+   - Performance benchmarks
+   - Functionality verification
+
+4. **Risk Management (10 points)**
+   - Backup readiness
+   - Rollback plan tested
+
+### Upgrade Decision Matrix
+- **≥ 80 points**: Proceed with upgrade (low risk)
+- **60-79 points**: Further evaluation needed
+- **< 60 points**: Do not upgrade (high risk)
+
+### Weekly Scanning Procedure
+1. **Monday**: Run automated scoring
+2. **Review**: Analyze report and scores
+3. **Decision**: Human confirmation required for ≥80 scores
+4. **Execution**: Scheduled upgrade with full backup
+
+### Emergency Rollback
+Trigger conditions:
+- Server crash on startup
+- TPS consistently below 15
+- Critical plugin failures
+- Player data corruption
+
+Rollback steps:
+1. Stop server immediately
+2. Restore from latest backup
+3. Revert to previous version
+4. Verify and restart
+
 ## Directory Structure
 
 ```
